@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_search_prediction_primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:drawableEndCompat="@drawable/baseline_keyboard_arrow_right_24"
+        tools:text="asdasdasd"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_search_prediction_secondary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="asdsadasd"
+        android:textAppearance="@style/TextAppearance.Material3.BodySmall"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

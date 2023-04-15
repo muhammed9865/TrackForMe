@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TrackForMe</string>
+    <string name="map">Map</string>
+    <string name="settings">Settings</string>
+    <string name="search">Search</string>
+    <string name="alert_me">Alert me</string>
+</resources>
