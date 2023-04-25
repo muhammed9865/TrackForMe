@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.model.LatLng
 import com.salman.trackforme.core.TrackViewModel
 import com.salman.trackforme.domain.usecase.GetPlaceByIdUseCase
-import com.salman.trackforme.domain.usecase.SearchUseCase
+import com.salman.trackforme.domain.usecase.SearchPlaceUseCase
 import com.salman.trackforme.domain.usecase.SetGeofenceUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -18,7 +18,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class MapViewModel @Inject constructor(
-    private val searchUseCase: SearchUseCase,
+    private val searchUseCase: SearchPlaceUseCase,
     private val getPlaceByIdUseCase: GetPlaceByIdUseCase,
     private val setGeofenceUseCase: SetGeofenceUseCase
 ) : TrackViewModel() {

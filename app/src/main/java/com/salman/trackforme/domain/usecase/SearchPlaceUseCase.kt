@@ -9,7 +9,7 @@ import javax.inject.Inject
 /**
  * Created by Muhammed Salman email(mahmadslman@gmail.com) on 4/9/2023.
  */
-class SearchUseCase @Inject constructor(
+class SearchPlaceUseCase @Inject constructor(
     private val placeRepository: PlaceRepository,
 ) {
     suspend operator fun invoke(query: String): Result<List<SearchPrediction>> {

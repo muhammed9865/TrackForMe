@@ -1,0 +1,36 @@
+package com.salman.trackforme.presentation.bluetooth
+
+import android.annotation.SuppressLint
+import androidx.lifecycle.viewModelScope
+import com.salman.trackforme.core.TrackViewModel
+import com.salman.trackforme.domain.usecase.GetBluetoothDevicesUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+/**
+ * Created by Muhammed Salman email(mahmadslman@gmail.com) on 4/25/2023.
+ */
+@SuppressLint("MissingPermission")
+@HiltViewModel
+class BluetoothViewModel @Inject constructor(
+    private val getBluetoothDevicesUseCase: GetBluetoothDevicesUseCase
+): TrackViewModel() {
+
+    private val _devices = MutableStateFlow(emptyList<String>())
+    val devices = _devices.asStateFlow()
+
+    @SuppressLint("MissingPermission")
+    fun search() {
+        viewModelScope.launch {
+            getBluetoothDevicesUseCase()
+                .onEach { devices ->
+                    _devices.value = devices.map { it.name }
+                }.launchIn(viewModelScope)
+        }
+    }
+}

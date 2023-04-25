@@ -2,6 +2,7 @@ package com.salman.trackforme.presentation.map
 
 import android.animation.LayoutTransition
 import android.annotation.SuppressLint
+import android.bluetooth.BluetoothAdapter
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,6 +17,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.ktx.awaitMap
 import com.salman.trackforme.R
 import com.salman.trackforme.core.TrackFragment
+import com.salman.trackforme.core.common.hasLocationPermission
 import com.salman.trackforme.core.map.MapUtil
 import com.salman.trackforme.databinding.FragmentMapBinding
 import com.salman.trackforme.domain.model.SearchPrediction
@@ -37,10 +39,14 @@ class MapFragment : TrackFragment<MapViewModel, FragmentMapBinding>(
     private var map: GoogleMap? = null
 
     private val groupPermissionRequest =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {}
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+            map?.setUiSettings()
+        }
 
     private val singlePermissionRequest =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) {}
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            map?.setUiSettings()
+        }
 
     private val RecyclerView.searchAdapter get() = adapter as SearchAdapter
 
@@ -110,14 +116,15 @@ class MapFragment : TrackFragment<MapViewModel, FragmentMapBinding>(
     @SuppressLint("MissingPermission")
     private fun GoogleMap.setUiSettings() {
         uiSettings.isMapToolbarEnabled = true
-        uiSettings.isMyLocationButtonEnabled = true
         uiSettings.isZoomControlsEnabled = true
         uiSettings.isCompassEnabled = true
         uiSettings.isRotateGesturesEnabled = true
         uiSettings.isScrollGesturesEnabled = true
         uiSettings.isTiltGesturesEnabled = true
 
-        isMyLocationEnabled = true
+        if (hasLocationPermission()) {
+            isMyLocationEnabled = true
+        }
         isBuildingsEnabled = true
         isTrafficEnabled = true
 

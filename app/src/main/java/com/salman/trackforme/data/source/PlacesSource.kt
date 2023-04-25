@@ -1,6 +1,5 @@
 package com.salman.trackforme.data.source
 
-import android.util.Log
 import com.google.android.libraries.places.api.model.AutocompletePrediction
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FetchPlaceRequest

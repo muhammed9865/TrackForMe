@@ -7,10 +7,13 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.salman.trackforme.BuildConfig
+import com.salman.trackforme.data.repository.BluetoothRepositoryImpl
 import com.salman.trackforme.data.repository.GeofenceRepositoryImpl
 import com.salman.trackforme.data.repository.PlaceRepositoryImpl
+import com.salman.trackforme.data.source.BluetoothSource
 import com.salman.trackforme.data.source.GeofenceSource
 import com.salman.trackforme.data.source.PlacesSource
+import com.salman.trackforme.domain.repository.BluetoothRepository
 import com.salman.trackforme.domain.repository.GeofenceRepository
 import com.salman.trackforme.domain.repository.PlaceRepository
 import dagger.Module
@@ -78,6 +81,16 @@ class RepositoryModule {
     ): GeofenceRepository {
         return GeofenceRepositoryImpl(
             geofenceSource = source
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideBluetoothRepository(
+        source: BluetoothSource
+    ): BluetoothRepository {
+        return BluetoothRepositoryImpl(
+            source = source
         )
     }
 

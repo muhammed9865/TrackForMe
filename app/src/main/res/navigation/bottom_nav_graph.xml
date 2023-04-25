@@ -2,10 +2,20 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mapFragment">
+    app:startDestination="@id/bluetoothFragment">
 
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.salman.trackforme.presentation.map.MapFragment"
         android:label="MapFragment" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.salman.trackforme.presentation.settings.SettingsFragment"
+        android:label="SettingsFragment" />
+
+    <fragment
+        android:id="@+id/bluetoothFragment"
+        android:name="com.salman.trackforme.presentation.bluetooth.BluetoothFragment"
+        android:label="BluetoothFragment" />
 </navigation>

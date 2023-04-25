@@ -6,10 +6,14 @@
         android:title="@string/map"
         app:showAsAction="ifRoom"/>
 
+    <item android:id="@+id/bluetoothFragment"
+        android:icon="@drawable/baseline_bluetooth_searching_24"
+        android:title="@string/connect"
+        app:showAsAction="ifRoom"/>
+
     <item android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_settings"
         android:title="@string/settings"
         app:showAsAction="ifRoom"/>
-
 
 </menu>
