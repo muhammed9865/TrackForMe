@@ -9,5 +9,23 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class SettingsViewModel @Inject constructor(): TrackViewModel() {
+    fun ZoomInHandler(){
 
+    }
+
+    fun ZoomOutHandler(){
+
+    }
+
+    fun RadiusInHandler(){
+
+    }
+
+    fun RadiusOutHandler(){
+
+    }
+
+    fun NotificationSwitchHandler(){
+
+    }
 }

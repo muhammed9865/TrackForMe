@@ -8,4 +8,8 @@
     <string name="zoom_in">+</string>
     <string name="zoom_out">-</string>
     <string name="connect">Connect</string>
+    <string name="zoom_description">Increment or decrement zooming to place selected in Search bar</string>
+    <string name="radius">Radius</string>
+    <string name="radius_description">Increment or decrement the radius of the Alert me circle</string>
+    <string name="notifications">Notifications</string>
 </resources>
