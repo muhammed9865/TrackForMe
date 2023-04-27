@@ -1,8 +1,10 @@
 package com.salman.trackforme.presentation.bluetooth
 
 import android.annotation.SuppressLint
+import android.bluetooth.BluetoothDevice
 import androidx.lifecycle.viewModelScope
 import com.salman.trackforme.core.TrackViewModel
+import com.salman.trackforme.domain.usecase.ConnectUseCase
 import com.salman.trackforme.domain.usecase.GetBluetoothDevicesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,10 +20,11 @@ import javax.inject.Inject
 @SuppressLint("MissingPermission")
 @HiltViewModel
 class BluetoothViewModel @Inject constructor(
-    private val getBluetoothDevicesUseCase: GetBluetoothDevicesUseCase
+    private val getBluetoothDevicesUseCase: GetBluetoothDevicesUseCase,
+    private val connectUseCase: ConnectUseCase
 ): TrackViewModel() {
 
-    private val _devices = MutableStateFlow(emptyList<String>())
+    private val _devices = MutableStateFlow(emptyList<BluetoothDevice>())
     val devices = _devices.asStateFlow()
 
     @SuppressLint("MissingPermission")
@@ -29,8 +32,14 @@ class BluetoothViewModel @Inject constructor(
         viewModelScope.launch {
             getBluetoothDevicesUseCase()
                 .onEach { devices ->
-                    _devices.value = devices.map { it.name }
+                    _devices.value = devices.map { it }
                 }.launchIn(viewModelScope)
+        }
+    }
+
+    fun connect(device: BluetoothDevice) {
+        viewModelScope.launch {
+            connectUseCase(device)
         }
     }
 }

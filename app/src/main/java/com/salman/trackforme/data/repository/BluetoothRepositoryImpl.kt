@@ -17,4 +17,8 @@ class BluetoothRepositoryImpl @Inject constructor(
     override fun getBluetoothDevices(): Flow<List<BluetoothDevice>> {
         return source.getBluetoothDevices()
     }
+
+    override fun connect(device: BluetoothDevice) {
+        source.connect(device)
+    }
 }

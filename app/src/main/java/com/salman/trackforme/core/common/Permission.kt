@@ -34,3 +34,10 @@ fun Context.hasBluetoothPermission(): Boolean {
         checkSelfPermission(it) == PERMISSION_GRANTED
     }
 }
+
+fun Context.hasNotificationPermission(): Boolean {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        return checkSelfPermission(Manifest.permission.ACCESS_NOTIFICATION_POLICY) == PERMISSION_GRANTED
+    }
+    return true
+}

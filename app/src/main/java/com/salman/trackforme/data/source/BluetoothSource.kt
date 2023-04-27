@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Message
 import com.salman.trackforme.core.common.hasBluetoothPermission
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
@@ -15,6 +16,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
+import java.io.IOException
+import java.util.UUID
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
@@ -37,6 +40,19 @@ class BluetoothSource @Inject constructor(
         return devicesFlow
     }
 
+    @SuppressLint("MissingPermission")
+    fun connect(device: BluetoothDevice) {
+        val adapter = bluetoothManager.adapter
+        try {
+            val socket = device.createRfcommSocketToServiceRecord(UUID.randomUUID())
+            adapter.cancelDiscovery()
+            socket.connect()
+        } catch (e: IOException) {
+            e.printStackTrace()
+            println("error")
+        }
+    }
+
     private fun hasRequiredPermission(): Boolean {
         return context.hasBluetoothPermission()
     }
@@ -46,7 +62,10 @@ class BluetoothSource @Inject constructor(
     }
 
     private fun registerReceiver() {
-        val filter = IntentFilter(BluetoothDevice.ACTION_FOUND)
+        val filter = IntentFilter()
+        filter.addAction(BluetoothDevice.ACTION_FOUND)
+        filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED)
+        filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED)
         context.registerReceiver(receiver, filter)
     }
 
@@ -55,6 +74,17 @@ class BluetoothSource @Inject constructor(
         override fun onReceive(context: Context?, intent: Intent?) {
             context?.let {
                 val action = intent?.action
+                if (BluetoothDevice.ACTION_ACL_DISCONNECTED == action) {
+                    bluetoothManager.adapter.startDiscovery()
+                    // show alarm
+                    println("disconnected")
+                }
+
+                if (BluetoothDevice.ACTION_ACL_CONNECTED == action) {
+                    bluetoothManager.adapter.cancelDiscovery()
+                    println("connected")
+                }
+
                 if (BluetoothDevice.ACTION_FOUND == action) {
                     val device: BluetoothDevice? =
                         intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)

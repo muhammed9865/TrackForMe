@@ -43,6 +43,7 @@
                 android:layout_marginEnd="12dp"
                 android:text="@string/zoom_in"
                 android:textColor="#FFFFFF"
+                android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/Zoom_value"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -53,12 +54,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/zoom_out"
                 android:textColor="#FFFFFF"
+                android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/Zoom_value"
+                android:id="@+id/zoom_value"
                 android:layout_width="34dp"
                 android:layout_height="29dp"
                 android:layout_marginEnd="12dp"
@@ -78,9 +80,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
+            android:layout_marginStart="10dp"
             android:text="@string/zoom_description"
             android:textColor="#9C9898"
-            android:textSize="13sp" />
+            android:textSize="12sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -97,6 +100,7 @@
                 android:layout_marginEnd="12dp"
                 android:text="@string/zoom_in"
                 android:textColor="#FFFFFF"
+                android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/radius_value"
                 app:layout_constraintTop_toTopOf="parent"
@@ -123,6 +127,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/zoom_out"
                 android:textColor="#FFFFFF"
+                android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -144,14 +149,15 @@
             android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
+            android:layout_marginStart="10dp"
             android:text="@string/radius_description"
             android:textColor="#9C9898"
-            android:textSize="13sp" />
+            android:textSize="12sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="64dp"
+            android:visibility="gone"
             android:background="@drawable/setting_input_container"
             android:minHeight="75dp"
             android:paddingLeft="30dp"
@@ -168,16 +174,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Switch
+            <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/notifications_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
+
                 android:text=""
-                android:thumbTint="#E18A07"
-                android:trackTint="#D9D9D9CC"
+                app:thumbTint="#E18A07"
+                app:trackTint="#D9D9D9CC"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

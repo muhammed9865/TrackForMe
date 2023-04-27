@@ -9,5 +9,6 @@ import kotlinx.coroutines.flow.Flow
 interface BluetoothRepository {
 
     fun getBluetoothDevices(): Flow<List<BluetoothDevice>>
+    fun connect(device: BluetoothDevice)
 
 }

@@ -10,12 +10,14 @@ import com.salman.trackforme.BuildConfig
 import com.salman.trackforme.data.repository.BluetoothRepositoryImpl
 import com.salman.trackforme.data.repository.GeofenceRepositoryImpl
 import com.salman.trackforme.data.repository.PlaceRepositoryImpl
+import com.salman.trackforme.data.repository.SettingsRepositoryImpl
 import com.salman.trackforme.data.source.BluetoothSource
 import com.salman.trackforme.data.source.GeofenceSource
 import com.salman.trackforme.data.source.PlacesSource
 import com.salman.trackforme.domain.repository.BluetoothRepository
 import com.salman.trackforme.domain.repository.GeofenceRepository
 import com.salman.trackforme.domain.repository.PlaceRepository
+import com.salman.trackforme.domain.repository.SettingsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -92,6 +94,14 @@ class RepositoryModule {
         return BluetoothRepositoryImpl(
             source = source
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideSettingsRepository(
+        source: SettingsRepositoryImpl
+    ): SettingsRepository {
+        return source
     }
 
 

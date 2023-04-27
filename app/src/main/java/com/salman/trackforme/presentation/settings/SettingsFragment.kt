@@ -2,11 +2,13 @@ package com.salman.trackforme.presentation.settings
 
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.salman.trackforme.core.TrackFragment
 import com.salman.trackforme.databinding.FragmentSettingsBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 /**
  * Created by Muhammed Salman email(mahmadslman@gmail.com) on 4/21/2023.
@@ -17,27 +19,33 @@ class SettingsFragment : TrackFragment<SettingsViewModel, FragmentSettingsBindin
 ) {
     override val viewModel: SettingsViewModel by viewModels()
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setListeners()
+        addObservers()
+    }
 
+    private fun setListeners() {
         binding.ZoomIn.setOnClickListener(){
-            viewModel.ZoomInHandler()
+            viewModel.incrementZoom()
         }
 
         binding.ZoomOut.setOnClickListener(){
-            viewModel.ZoomOutHandler()
+            viewModel.decrementZoom()
         }
 
         binding.radiusIn.setOnClickListener(){
-            viewModel.RadiusInHandler()
+            viewModel.incrementRadius()
         }
         binding.radiusOut.setOnClickListener(){
-            viewModel.RadiusOutHandler()
+            viewModel.decrementRadius()
         }
-        binding.notificationsSwitch.setOnFocusChangeListener { view, b ->
-            viewModel.NotificationSwitchHandler()
+    }
+
+    private fun addObservers() = lifecycleScope.launch {
+        viewModel.flow.collect {
+            binding.zoomValue.text = it.zoom.toString()
+            binding.radiusValue.text = it.radius.toString()
         }
     }
 }
