@@ -8,7 +8,6 @@ TrackForMe is a user-friendly, location-based tracking application designed to e
 ## Table of Contents
 
 - [Features](#features)
-- [Installation](#installation)
 - [Usage](#usage)
 - [Contributors](#contributors)
 
@@ -16,15 +15,6 @@ TrackForMe is a user-friendly, location-based tracking application designed to e
 
 1. **Geographical Area Tracking**: Define a geographical area with a specific radius and receive notifications when your location collides with that area.
 2. **Bluetooth Bracelet Connection**: Pair a Bluetooth bracelet with your device and receive notifications when the bracelet is out of range. This is especially useful for parents who want to ensure their child's safety when they are in crowded or unfamiliar environments.
-
-## Installation
-
-To install TrackForMe, follow these simple steps:
-
-1. Download the TrackForMe app from the appropriate app store for your device (iOS or Android).
-2. Install the app on your device by following the on-screen instructions.
-3. Launch the app and sign up for an account or log in if you already have one.
-4. Connect your Bluetooth bracelet to your device using the app's pairing functionality.
 
 ## Usage
 
